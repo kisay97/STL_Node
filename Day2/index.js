@@ -11,7 +11,8 @@ const requestHandler = require('./requestHandler');
 const handle = {
     '/' : requestHandler.start,
     '/start' : requestHandler.start,
-    '/upload' : requestHandler.upload
+    '/upload' : requestHandler.upload,
+    '/favicon.ico' : requestHandler.favicon
 }
 
 // 서버 시작.
