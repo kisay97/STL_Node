@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://learn.microsoft.com/favicon.ico">
+    <!-- <link rel="icon" type="image/x-icon" href="./favicon.png"> --> <!-- 이거 쓸려면 스태틱 설정(특정 경로, 특정 요청은 파일을 그대로 읽는 설정)을 해야함 -->
+    <title>NodeJS 설붤~</title>
+    <style>
+        h1{color:red;}
+        h3{color:blue;}
+    </style>
+</head>
+<body>
+    <h1>NodeJS 공부용 서버입니다.</h1>
+    <h3>반갑습니다.</h3>
+
+    <!-- Ctrl + /. 이미지 업로드를 위한 폼(Form) 태그 -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit" value="업로드">
+    </form>
+</body>
+</html>
