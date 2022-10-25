@@ -1,12 +1,12 @@
 var fs = require('fs');
 
 // 전달 받은 경로를 확인하고, 처리에 필요한 함수를 간접 실행해주는 함수.
-function route(pathname, handle, response) {
+function route(pathname, handle, response, request) {
     console.log(pathname+' 경로로 요청됨.');
     
     // 경로 값 확인해서 함수 실행.
     if (typeof(handle[pathname]) === 'function') {
-        handle[pathname](response);
+        handle[pathname](response, request);
     } else { // 함수를 못 찾은 경우에는 오류 출력.
         console.log('404 오류. 페이지 검색 실패');
 

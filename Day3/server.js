@@ -14,7 +14,7 @@ function start(route, handle) {
         console.log('query: ' + url.parse(req.url).query); //param만
 
         // 라우팅 처리 함수를 실행하면서, 경로 전달.
-        route(pathname, handle, res);
+        route(pathname, handle, res, req);
     });
 
     server.listen(3000, () => {
