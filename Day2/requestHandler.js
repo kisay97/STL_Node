@@ -10,7 +10,9 @@ function start(response) {
         if(err){
             response.statusCode = 500;
             response.setHeader('Content-Type', 'text/html');
-            response.end('500 internal server error');
+            response.end('<h1>500 Internal Server Error</h1>'+
+                '<p>'+(err.toString())+'</p>'
+            );
         } else {
             response.statusCode = 200;
             response.setHeader('Content-Type', 'text/html');
