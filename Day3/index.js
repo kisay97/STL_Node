@@ -12,7 +12,8 @@ const handle = {
     '/' : requestHandler.start,
     '/start' : requestHandler.start,
     '/upload' : requestHandler.upload,
-    '/favicon.ico' : requestHandler.favicon
+    '/favicon.ico' : requestHandler.favicon,
+    '/show' : requestHandler.show
 }
 
 // 서버 시작.

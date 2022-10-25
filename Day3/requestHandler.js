@@ -63,6 +63,18 @@ function upload(response, request) {
     })
 }
 
+function show(response){
+    fs.readFile('./uploads/img.png', (err,data)=>{
+        if(err){
+            console.log('error occured: ' + err);
+        } else {
+            response.statusCode = 200;
+            response.setHeader('Content-Type', 'image/png');
+            response.end(data);
+        }
+    });
+}
+
 function favicon(response){
     fs.readFile('./logo.png', function(err,img){
         response.statusCode = 200;
@@ -75,5 +87,6 @@ function favicon(response){
 module.exports = {
     start,
     upload,
-    favicon
+    favicon,
+    show
 }
