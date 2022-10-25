@@ -1,42 +1,42 @@
 // 모듈 가져오기
 const http = require('http');
 const express = require('express');
-const { nextTick } = require('process');
+const fs = require('fs');
 
-// 객체 생성.
-const app = express();
-// 포트 번호 설정.
-const port = 3000;
+// 서버 시작함수.
+const start = (req,res) => {
+    
+    // 객체 생성.
+    const app = express();
 
-// 요청 응답 설정.
-// app.use((req, res, next)=>{
-//     console.log('첫 번째 응답');
-//     next();
-// });
-// app.use((req, res, next)=>{
-//     console.log('두 번째 응답');
-//     next();
-// });
-app.use((req,res) => {
-    // console.log('세 번째 응답');
-    // res.statusCode = 200;
-    // res.setHeader('Content-Type', 'text/html');
-    // res.end('Hello Express Server');
+    app.use((req,res) => {
 
-    console.log(req.header('User-Agent'));
-    // console.log(req.headers);
-    res.send('Hello Express Server');
-});
+        //  GET 요청을 통해 전달된 파라미터 파싱(읽기).
+        // console.log(req.param('name')); //Deprecated
+        console.log(req.query.age);
 
-// 서버 생성 및 요청 대기
-const server = http.createServer(app);
-server.listen(port);
-console.log("server started");
+        // res.send('Hello Express Server');
+        fs.readFile('./index.html',(err,data)=>{
+            if(err){
+                res.status(500).send('<h1>500 Internal Server Error</h1>'+
+                '<p>'+(err.toString())+'</p>')
+            }
+            else {
+                // res.type('.html');
+                // res.status(200);
+                // res.send(data);
+                res.send(data.toString());
+            }
+        });
+    });
+    
+    // 서버 생성 및 요청 대기
+    http.createServer(app).listen(3000);
+    console.log("server started");
 
-// app.get('/', (req,res) => {
-//     res.send('Hello World!');
-// });
+}
 
-// app.listen(port, ()=>{
-//     console.log(`Example app listening on port ${port}`);
-// })
+// 모듈 내보내기.
+module.exports = {
+    start
+}
