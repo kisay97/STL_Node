@@ -9,19 +9,23 @@ const app = express();
 const port = 3000;
 
 // 요청 응답 설정.
-app.use((req, res, next)=>{
-    console.log('첫 번째 응답');
-    next();
-});
-app.use((req, res, next)=>{
-    console.log('두 번째 응답');
-    next();
-});
+// app.use((req, res, next)=>{
+//     console.log('첫 번째 응답');
+//     next();
+// });
+// app.use((req, res, next)=>{
+//     console.log('두 번째 응답');
+//     next();
+// });
 app.use((req,res) => {
-    console.log('세 번째 응답');
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('Hello Express Server');
+    // console.log('세 번째 응답');
+    // res.statusCode = 200;
+    // res.setHeader('Content-Type', 'text/html');
+    // res.end('Hello Express Server');
+
+    console.log(req.header('User-Agent'));
+    // console.log(req.headers);
+    res.send('Hello Express Server');
 });
 
 // 서버 생성 및 요청 대기
