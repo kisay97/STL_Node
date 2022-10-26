@@ -1,6 +1,9 @@
 // 모듈 가져오기.
 const fs = require('fs');
 
+// 임시 저장용 변수
+let savedFilename = '';
+
 // 모듈 내보내기.
 module.exports = {
     start : (request, response) => {
@@ -27,23 +30,42 @@ module.exports = {
     },
     upload : (request, response) => {
         console.log('upload called');
-        fs.rename(request.files.image.path, `./uploads/${request.files.image.name}`, (error) => {
+
+        // 업로드된 파일의 경로 변경.
+        const dir = `${__dirname}/uploads`;
+        // 업로드 폴더 있는지 확인
+        if (!fs.existsSync(dir)) {
+            console.log("폴더 없음");
+            // 폴더 없으면 만들기
+            fs.mkdirSync(dir, {recursive: true});
+        }
+        const filepath = `${dir}/${request.files.image.name}`;
+        fs.rename(request.files.image.path, filepath, (error) => {
             if (error) {
                 response.send('Error ocurred: ' + error);
             } else {
-                savedFileName = request.files.image.name;
+                // 저장한 파일 이름 임시로 저장.
+                savedFilename = request.files.image.name;
                 response.send('<img src=/show />');
             }
         });
     },
     show : (request, response) => {
         console.log('show called');
-        if (savedFileName != '') {
-            fs.readFile(__dirname + '/uploads/' + savedFileName, (error, image) => {
+        
+        // savedFilename 변수에 저장된 값이 빈 문자열이 아닌지 확인.
+        if (savedFilename != '') {
+            // 불러올 파일 경로 값
+            const filepath = `${__dirname}/uploads/${savedFilename}`;
+            // 파일 읽기
+            fs.readFile(filepath, (error, image) => {
+                // 오류 처리.
                 if (error) {
                     response.send('Error ocurred: ' + error);
                 } else {
-                    savedFileName = '';
+                    // 데이터 읽어온 후 파일 이름 초기화.
+                    savedFilename = '';
+                    // 응답 처리.
                     response.send(image);
                 }
             })

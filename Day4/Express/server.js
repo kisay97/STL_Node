@@ -17,7 +17,7 @@ const start = () => {
     app.get('/start', requestHandler.start);
     app.get('/show', requestHandler.show);
     app.get('/favicon.ico', requestHandler.favicon);
-    app.get('/upload', requestHandler.upload);
+    app.post('/upload', requestHandler.upload);
     
     // 서버 생성 및 요청 대기
     app.listen(3000);
