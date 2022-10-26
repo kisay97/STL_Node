@@ -37,7 +37,7 @@ module.exports = {
         if (!fs.existsSync(dir)) {
             console.log("폴더 없음");
             // 폴더 없으면 만들기
-            fs.mkdirSync(dir, {recursive: true});
+            fs.promises.mkdir(dir, {recursive: true});
         }
         const filepath = `${dir}/${request.files.image.name}`;
         fs.rename(request.files.image.path, filepath, (error) => {
