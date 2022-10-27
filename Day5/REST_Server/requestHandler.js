@@ -70,5 +70,6 @@ module.exports = {
     getTotalData,
     getUserData,
     insertData,
-    changeData
+    changeData,
+    deleteUserData
 }
