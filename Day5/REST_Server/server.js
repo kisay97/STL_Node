@@ -12,7 +12,7 @@ module.exports = {
         const app = express();
 
         // 미들웨어 설정 - BodyParser
-        app.use(express.urlencoded());
+        app.use(express.urlencoded({ extended : true }));
 
         // 라우팅 설정.
         // 요청 처리: get/post/put/delete
