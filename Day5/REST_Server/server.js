@@ -1,6 +1,6 @@
 // 모듈 가져오기.
 const express = require('express');
-const requesHandler = require('./requestHandler');
+const requestHandler = require('./requestHandler');
 
 module.exports = {
     // 서버 시작 함수.
@@ -17,12 +17,12 @@ module.exports = {
         // 라우팅 설정.
         // 요청 처리: get/post/put/delete
         // /:id -> id가 파라미터로 전달됨.
-        app.get('/', requesHandler.showInputDataForm);
-        app.get('/user', requesHandler.getTotalData);
-        app.get('/user/:id', requesHandler.getUserData);
-        app.post('/user', requesHandler.insertData);
-        app.put('/user/:id', requesHandler.changeData);
-        app.delete('/user/:id', requesHandler.deleteUserData);
+        // app.get('/', requestHandler.showInputDataForm);
+        app.get('/user', requestHandler.getTotalData);
+        app.get('/user/:id', requestHandler.getUserData);
+        app.post('/user', requestHandler.insertData);
+        app.put('/user/:id', requestHandler.changeData);
+        app.delete('/user/:id', requestHandler.deleteUserData);
 
         // 요청 대기
         app.listen(3000);
