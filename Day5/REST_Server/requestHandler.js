@@ -43,7 +43,7 @@ function insertData(request, response) {
 // 데이터 변경 처리.
 function changeData(request, response) {
     // 폼 데이터 파싱.
-    const id = request.body.id;
+    const id = request.params.id;
     const name = request.body.name;
     const region = request.body.region;
 

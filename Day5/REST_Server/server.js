@@ -15,6 +15,8 @@ module.exports = {
         app.use(express.urlencoded());
 
         // 라우팅 설정.
+        // 요청 처리: get/post/put/delete
+        // /:id -> id가 파라미터로 전달됨.
         app.get('/', requesHandler.showInputDataForm);
         app.get('/user', requesHandler.getTotalData);
         app.get('/user/:id', requesHandler.getUserData);
