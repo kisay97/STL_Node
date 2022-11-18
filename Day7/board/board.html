@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>STL 게시판</title>
+    </head>
+    <body>
+        <h1>STL NodeJS 게시판</h1>
+        <hr />
+        <table width="50%" border="1">
+            <tr>
+                <th width="20%">작성자</th>
+                <th width="70%">제목</th>
+                <th width="10%">글번호</th>
+            </tr>
+            <% data.forEach(function(item, index) { %>
+            <tr>
+                <td><%= item.userid %></td>
+                <td><a href="/board/<%= item.id %>"><%= item.title %></a></td>
+                <td><%= item.id %></td>
+            </tr>
+            <% }); %>
+        </table>
+        <hr />
+        <form method="GET" action="/board/writing">
+            <input type="submit" value="글쓰기">
+        </form>
+    </body>
+</html>

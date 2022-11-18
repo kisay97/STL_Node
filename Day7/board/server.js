@@ -1,0 +1,40 @@
+// 모듈 추출.
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const favicon = require('serve-favicon');
+
+// 라우팅 설정 함수.
+function setRouter(app, handle) {
+    for (let info of handle) {
+        switch (info.method) {
+            case 'get': app.get(info.path, info.callback); break;
+            case 'post': app.post(info.path, info.callback); break;
+            case 'put': app.put(info.path, info.callback); break;
+            case 'delete': app.delete(info.path, info.callback); break;
+            default: break;
+        }
+    }
+}
+
+// 서버 시작 함수.
+function start(handle) {
+    // 서버 생성.
+    const app = express();
+
+    // 미들웨어 설정.
+    app.use(express.urlencoded({extended : true}));
+    app.use(cookieParser());
+    app.use(favicon(__dirname + '/image/favicon_ronniej.ico'));
+
+    // 라우팅 설정.
+    setRouter(app, handle);
+
+    // 서버 실행.
+    app.listen(3000);
+    console.log('서버 실행중');
+}
+
+// 모듈 내보내기.
+module.exports = {
+    start
+};
